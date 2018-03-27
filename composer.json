@@ -1,0 +1,19 @@
+{
+    "name": "vonq/user-connections",
+    "description": "REST API that deals with users and their connections with other members.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Pablo Rigazzi",
+            "email": "pablo.rigazzi@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Vonq\\Api\\": "packages/Api/src",
+            "Vonq\\App\\": "packages/App/src"
+        }
+    }
+}
