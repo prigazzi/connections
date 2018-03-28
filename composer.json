@@ -9,7 +9,13 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php-di/php-di": "dev-master",
+        "relay/relay": "2.x@dev",
+        "zendframework/zend-diactoros": "^1.7@dev",
+        "middlewares/fast-route": "dev-master",
+        "middlewares/request-handler": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "Vonq\\Api\\": "packages/Api/src",

@@ -10,17 +10,17 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Api">
+        <testsuite name="Api Tests">
             <directory>packages/Api/tests</directory>
         </testsuite>
-        <testsuite name="App">
+        <testsuite name="App Tests">
             <directory>packages/App/tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">packages/Api/src</directory>
-            <directory suffix=".php">packages/App/src</directory>
+            <directory suffix=".php">./packages/Api/src</directory>
+            <directory suffix=".php">./packages/App/src</directory>
         </whitelist>
     </filter>
     <logging>
