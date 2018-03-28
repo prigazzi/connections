@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace Vonq\Api\Infrastructure\WebController;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
-class TestController
+class UserConnectionListController
 {
     private $response;
     
@@ -14,11 +15,12 @@ class TestController
         $this->response = clone $response;
     }
     
-    public function __invoke(): ResponseInterface
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
+        $userId = $request->getAttribute('userId');
+        
         $response = $this->response->withHeader('Content-type', 'text/html');
-        $response = $response->withHeader('Location', 'http://google.com.ar');
-        $response->getBody()->write('Hi from a nice Controller');
+        $response->getBody()->write("List of User Connections for user {$userId}");
 
         return $response;
     }
