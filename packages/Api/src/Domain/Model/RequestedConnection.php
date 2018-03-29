@@ -5,4 +5,5 @@ namespace Vonq\Api\Domain\Model;
 
 class RequestedConnection implements ConnectionInterface
 {
+    use Connection;
 }
