@@ -5,10 +5,7 @@ namespace Vonq\Api\Domain\Model;
 
 interface ConnectionRepositoryInterface
 {
-    public function retrieveConnectionsForUser(
-        UserId $userId,
-        ConnectionSelectionCriteria $criteria = null
-    ): ConnectionList;
+    public function forUserIdAndCriteria(UserId $userId, ConnectionSelectionCriteria $criteria);
 
-    public function inviteUserToConnect(UserId $invitee, UserId $invited);
+    public function save(ConnectionInterface $connection);
 }
