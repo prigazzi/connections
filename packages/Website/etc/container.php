@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use DI\ContainerBuilder;
+use Vonq\Website\Application\Service\UserGroupService;
 use Vonq\Website\Domain\Model\GroupRepositoryInterface;
 use Vonq\Website\Domain\Model\UserRepositoryInterface;
 use Vonq\Website\Infrastructure\Persistence\GroupSqliteRepository;
@@ -24,9 +25,14 @@ $containerBuilder->addDefinitions(
         DisplayUsersInGroupController::class =>
             create(DisplayUsersInGroupController::class)
             ->constructor(
-                get(GroupRepositoryInterface::class),
-                get(UserRepositoryInterface::class),
+                get(UserGroupService::class),
                 get(TemplateEngineInterface::class)
+            ),
+        UserGroupService::class =>
+            create(UserGroupService::class)
+            ->constructor(
+                get(GroupRepositoryInterface::class),
+                get(UserRepositoryInterface::class)
             ),
         GroupRepositoryInterface::class =>
             create(GroupSqliteRepository::class)

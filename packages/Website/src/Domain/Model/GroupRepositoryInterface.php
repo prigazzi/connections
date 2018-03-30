@@ -5,4 +5,7 @@ namespace Vonq\Website\Domain\Model;
 
 interface GroupRepositoryInterface
 {
+    public function query(SpecificationInterface $specification);
+
+    public function exists(GroupId $groupId);
 }

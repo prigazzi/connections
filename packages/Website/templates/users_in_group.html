@@ -1,5 +1,12 @@
 {% extends "layouts/default.html" %}
 
 {% block body %}
-Hello {{ groupName }}!
+<h3>Group: {{ groupName }}</h3>
+
+<h4>Users in this group</h4>
+<ul>
+{% for user in userList %}
+<li><a href="/user/{{user.userId}}">{{user.name}}</a></li>
+{% endfor %}
+</ul>
 {% endblock %}
