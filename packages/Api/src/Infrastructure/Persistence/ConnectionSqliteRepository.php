@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Vonq\Api\Infrastructure\Persistence;
 
 use Vonq\Api\Domain\Model\ConnectionInterface;
-use Vonq\Api\Domain\Model\GroupList;
+use Vonq\Api\Domain\Model\ConnectionList;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
 use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
 use \RuntimeException;
@@ -35,7 +35,7 @@ class ConnectionSqliteRepository implements ConnectionRepositoryInterface
             $connectionList[] = $this->mapper->fromRecord($record);
         }
 
-        return new GroupList(...$connectionList);
+        return new ConnectionList(...$connectionList);
     }
 
     public function save(ConnectionInterface $connection)

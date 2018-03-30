@@ -5,7 +5,7 @@ namespace Vonq\Api\Application\Service;
 
 use Vonq\Api\Application\Exception\CantAcceptRelationshipException;
 use Vonq\Api\Application\Exception\ConnectionAlreadyExistsException;
-use Vonq\Api\Domain\Model\GroupList;
+use Vonq\Api\Domain\Model\ConnectionList;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
 use Vonq\Api\Domain\Model\RelationshipConnection;
 use Vonq\Api\Domain\Model\RequestedConnection;
@@ -21,7 +21,7 @@ class ConnectionService
         $this->repository = $repository;
     }
 
-    public function retrieveConnectionsForUser(UserId $userId): GroupList
+    public function retrieveConnectionsForUser(UserId $userId): ConnectionList
     {
         return $this->repository->query(new AllConnectionsForUserSqliteSpecification($userId));
     }
