@@ -8,9 +8,9 @@ use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
 use Vonq\Api\Domain\Model\ConnectionSelectionCriteria;
 use Vonq\Api\Domain\Model\UserId;
 use \RuntimeException;
-use \Sqlite;
+use \Sqlite3;
 
-class ConnectionSqliteRepository implements ConnectionRespositoryInterface
+class ConnectionSqliteRepository implements ConnectionRepositoryInterface
 {
     private $databse;
     private $mapper;
@@ -84,7 +84,7 @@ class ConnectionSqliteRepository implements ConnectionRespositoryInterface
             connection_user_from CHAR(36) NOT NULL,
             connection_user_to CHAR(36) NOT NULL,
             connection_type VARCHAR(255) NOT NULL,
-            connection_created_on DATETIME,
+            connection_created_on DATETIME NOT NULL,
             PRIMARY KEY (connection_user_from, connection_user_to, connection_type)
         )");
 
