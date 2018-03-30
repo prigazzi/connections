@@ -1,7 +1,14 @@
 #!/usr/bin/php
 <?php
 use Vonq\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
+use Vonq\Website\Infrastructure\Persistence\GroupSqliteRepository;
+use Vonq\Website\Infrastructure\Persistence\UserSqliteRepository;
 
-include_once __DIR__ . '/../../../vendor/autoload.php';
+include_once __DIR__ . '/../vendor/autoload.php';
 
-$repo = (new ConnectionSqliteRepository(__DIR__ . '/../data/connections.sqlite'));
+$connectionsContainer = include __DIR__.'/../packages/Api/etc/container.php';
+$repo = (new ConnectionSqliteRepository($connectionsContainer->get('databaseFile')));
+
+$userGroupsContainer = include __DIR__.'/../packages/Website/etc/container.php';
+$userRep = (new UserSqliteRepository($userGroupsContainer->get('databaseFile')));
+$groupRepo = (new GroupSqliteRepository($userGroupsContainer->get('databaseFile')));
