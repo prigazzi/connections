@@ -20,13 +20,13 @@
     "autoload": {
         "psr-4": {
             "Vonq\\Api\\": "packages/Api/src",
-            "Vonq\\App\\": "packages/App/src"
+            "Vonq\\Website\\": "packages/Website/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Vonq\\Api\\Tests\\": "packages/Api/tests",
-            "Vonq\\App\\Tests\\": "packages/App/tests"
+            "Vonq\\Website\\Tests\\": "packages/Website/tests"
         }
     },
     "require-dev": {
