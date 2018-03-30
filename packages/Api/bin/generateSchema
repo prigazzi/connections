@@ -1,7 +1,0 @@
-#!/usr/bin/php
-<?php
-use Vonq\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
-
-include_once __DIR__.'/../../../vendor/autoload.php';
-
-$repo = (new ConnectionSqliteRepository(__DIR__.'/../data/connections.sqlite'));

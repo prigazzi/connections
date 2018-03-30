@@ -1,0 +1,2 @@
+#!/bin/bash
+php -S locahost:8080 -t packages/App/public
