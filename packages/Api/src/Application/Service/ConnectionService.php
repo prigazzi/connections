@@ -10,7 +10,7 @@ use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
 use Vonq\Api\Domain\Model\RelationshipConnection;
 use Vonq\Api\Domain\Model\RequestedConnection;
 use Vonq\Api\Domain\Model\UserId;
-use Vonq\Api\Infrastructure\Persistence\Specification\AllConnectionsForUserSqliteSpecification;
+use Vonq\Api\Infrastructure\Persistence\Specification\AllRelationshipsForUserSqliteSpecification;
 
 class ConnectionService
 {
@@ -23,7 +23,7 @@ class ConnectionService
 
     public function retrieveConnectionsForUser(UserId $userId): ConnectionList
     {
-        return $this->repository->query(new AllConnectionsForUserSqliteSpecification($userId));
+        return $this->repository->query(new AllRelationshipsForUserSqliteSpecification($userId));
     }
 
     public function inviteUserToConnect(UserId $invitee, UserId $invited)
