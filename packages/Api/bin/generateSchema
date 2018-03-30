@@ -1,11 +1,7 @@
 #!/usr/bin/php
 <?php
 use Vonq\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
-use Vonq\Api\Domain\Model\DeclinedConnection;
-use Vonq\Api\Domain\Model\UserId;
 
 include_once __DIR__.'/../../../vendor/autoload.php';
 
-
 $repo = (new ConnectionSqliteRepository(__DIR__.'/../data/connections.sqlite'));
-$repo->save(new DeclinedConnection(new UserId, new UserId));

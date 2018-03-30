@@ -6,6 +6,7 @@ namespace Vonq\Api\Application\Service;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
 use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
 use Vonq\Api\Domain\Model\RequestedConnection;
+use Vonq\Api\Domain\Model\UserId;
 
 class ConnectionService
 {

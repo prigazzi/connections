@@ -7,6 +7,7 @@ use Vonq\Api\Domain\Model\ConnectionInterface;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
 use Vonq\Api\Domain\Model\ConnectionSelectionCriteria;
 use Vonq\Api\Domain\Model\UserId;
+use \InvalidArgumentException;
 use \RuntimeException;
 use \Sqlite3;
 
@@ -29,27 +30,33 @@ class ConnectionSqliteRepository implements ConnectionRepositoryInterface
     public function save(ConnectionInterface $connection)
     {
         if ($this->exists($connection)) {
-            return;
+            throw new InvalidArgumentException(
+                'Trying to create an already existing connection'
+            );
         }
 
         $user_from = Sqlite3::escapeString($connection->fromUserId()->toString());
         $user_to = Sqlite3::escapeString($connection->toUserId()->toString());
         $type = ConnectionTypeMapper::mapInstance($connection);
         
-        $result = $this->database->exec("
-            INSERT INTO VONQ_CONNECTIONS
-            (
-                connection_user_from,
-                connection_user_to,
-                connection_type,
-                connection_created_on
-            ) VALUES (
-                '{$user_from}',
-                '{$user_to}',
-                '{$type}',
-                date('now')
-            )
-        ");
+        $query = "
+        INSERT INTO VONQ_CONNECTIONS
+        (
+            connection_user_from,
+            connection_user_to,
+            connection_type,
+            connection_created_on
+        )
+        VALUES
+        (
+            '{$user_from}',
+            '{$user_to}',
+            '{$type}',
+            CURRENT_TIMESTAMP
+        )
+        ";
+        
+        $this->database->exec($query);
     }
 
     private function exists(ConnectionInterface $connection)
@@ -60,21 +67,21 @@ class ConnectionSqliteRepository implements ConnectionRepositoryInterface
         
         $result = $this->database->query("
             SELECT
-                count(connection_user_to) as ammount
+                count(connection_user_from) as amount
             FROM
                 VONQ_CONNECTIONS
             WHERE
                 connection_user_from = '{$user_from}' AND
                 connection_user_to = '{$user_to}' AND
                 connection_type = '{$type}'
-        ");
-
+         ");
+    
         if ($result->numColumns() === 0 && $result->columnType(0) === SQLITE3_NULL) {
-            return null;
+            return false;
         }
 
         $amount = $result->fetchArray();
-        return $amount['ammount'] === 1;
+        return $amount['amount'] === 1;
     }
 
     private function createSchema()

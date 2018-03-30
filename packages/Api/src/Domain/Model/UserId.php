@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Vonq\Api\Domain\Model;
 
 use Ramsey\Uuid\Uuid;
+use \InvalidArgumentException;
 
 class UserId
 {

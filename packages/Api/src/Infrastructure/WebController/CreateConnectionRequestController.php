@@ -3,23 +3,42 @@ declare(strict_types=1);
 
 namespace Vonq\Api\Infrastructure\WebController;
 
+use Vonq\Api\Application\Service\ConnectionService;
+use Vonq\Api\Domain\Model\UserId;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use \InvalidArgumentException;
 
 class CreateConnectionRequestController
 {
     private $response;
+    private $service;
     
-    public function __construct(ResponseInterface $response)
-    {
+    public function __construct(
+        ResponseInterface $response,
+        ConnectionService $service
+    ) {
         $this->response = clone $response;
+        $this->service = $service;
     }
     
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $response = $this->response->withHeader('Content-type', 'text/html');
-        $response = $response->withHeader('Location', 'http://google.com.ar');
-        $response->getBody()->write('Hi from a nice Controller');
+        $response = $this->response
+            ->withHeader('Content-type', 'text/html')
+            ->withStatus(201);
+        
+        try {
+            $body = json_decode($request->getBody()->getContents());
+            $userFrom = UserId::fromString($body->userFrom);
+            $userTo = UserId::fromString($body->userTo);
+
+            $this->service->inviteUserToConnect($userFrom, $userTo);
+        } catch (InvalidArgumentException $e) {
+            $response = $response->withStatus(409);
+        } catch (\Throwable $e) {
+            $response = $response->withStatus(500, $e->getMessage());
+        }
 
         return $response;
     }
