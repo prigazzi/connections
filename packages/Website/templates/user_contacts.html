@@ -1,0 +1,12 @@
+{% extends "layouts/default.html" %}
+
+{% block body %}
+<h3>User: {{ userName }}</h3>
+
+<h4>Contacts</h4>
+<ul>
+{% for connection in connections %}
+<li><a href="/user/{{connection.userId}}">{{connection.name}}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

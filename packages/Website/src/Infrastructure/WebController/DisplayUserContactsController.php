@@ -5,14 +5,12 @@ namespace Vonq\Website\Infrastructure\WebController;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Vonq\Website\Application\Service\UserGroupService;
-use Vonq\Website\Domain\Model\GroupId;
+use Vonq\Website\Domain\Model\UserId;
 use Vonq\Website\Infrastructure\Presentation\TemplateEngineInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 
-class DisplayUsersInGroupController
+class DisplayUserContactsController
 {
-    const DEFAULT_GROUP_ID = '9be55c55-d238-4ebf-885f-ceafb2cb8c72';
-
     /** @var TemplateEngineInterface */
     private $templateEngine;
 
@@ -29,11 +27,11 @@ class DisplayUsersInGroupController
 
     public function __invoke(ServerRequestInterface $request)
     {
-        $groupListViewData = $this->userGroupService->userListInformationForGroup(
-            GroupId::fromString(self::DEFAULT_GROUP_ID)
+        $userContactsViewData = $this->userGroupService->contactsForUser(
+            UserId::fromString($request->getAttribute('userId'))
         );
 
-        $view = $this->templateEngine->render('users_in_group.html', $groupListViewData);
+        $view = $this->templateEngine->render('user_contacts.html', $userContactsViewData);
 
         return new HtmlResponse($view);
     }

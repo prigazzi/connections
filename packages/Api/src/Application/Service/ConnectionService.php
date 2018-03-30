@@ -57,5 +57,6 @@ class ConnectionService
         }
 
         $this->repository->save(new RelationshipConnection($invitee, $invited));
+        $this->repository->save(new RelationshipConnection($invited, $invitee));
     }
 }

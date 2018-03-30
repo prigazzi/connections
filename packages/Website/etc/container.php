@@ -2,13 +2,17 @@
 declare(strict_types=1);
 
 use DI\ContainerBuilder;
+use GuzzleHttp\Client;
 use Vonq\Website\Application\Service\UserGroupService;
 use Vonq\Website\Domain\Model\GroupRepositoryInterface;
 use Vonq\Website\Domain\Model\UserRepositoryInterface;
+use Vonq\Website\Infrastructure\Api\ConnectionApiClientInterface;
+use Vonq\Website\Infrastructure\Api\ConnectionGuzzleApiClient;
 use Vonq\Website\Infrastructure\Persistence\GroupSqliteRepository;
 use Vonq\Website\Infrastructure\Persistence\UserSqliteRepository;
 use Vonq\Website\Infrastructure\Presentation\TemplateEngine;
 use Vonq\Website\Infrastructure\Presentation\TemplateEngineInterface;
+use Vonq\Website\Infrastructure\WebController\DisplayUserContactsController;
 use Vonq\Website\Infrastructure\WebController\DisplayUsersInGroupController;
 
 use function DI\create;
@@ -23,32 +27,44 @@ $containerBuilder->useAnnotations(false);
 $containerBuilder->addDefinitions(
     [
         DisplayUsersInGroupController::class =>
-            create(DisplayUsersInGroupController::class)
+        create(DisplayUsersInGroupController::class)
+            ->constructor(
+                get(UserGroupService::class),
+                get(TemplateEngineInterface::class)
+            ),
+        DisplayUserContactsController::class =>
+        create(DisplayUserContactsController::class)
             ->constructor(
                 get(UserGroupService::class),
                 get(TemplateEngineInterface::class)
             ),
         UserGroupService::class =>
-            create(UserGroupService::class)
+        create(UserGroupService::class)
             ->constructor(
                 get(GroupRepositoryInterface::class),
-                get(UserRepositoryInterface::class)
+                get(UserRepositoryInterface::class),
+                get(ConnectionApiClientInterface::class)
             ),
         GroupRepositoryInterface::class =>
-            create(GroupSqliteRepository::class)
+        create(GroupSqliteRepository::class)
             ->constructor(get('databaseFile')),
         UserRepositoryInterface::class =>
-            create(UserSqliteRepository::class)
+        create(UserSqliteRepository::class)
             ->constructor(get('databaseFile')),
         TemplateEngineInterface::class =>
-            factory(
-                function (string $templateDirectory) {
-                    $loader = new Twig_Loader_Filesystem($templateDirectory);
-                    $twig = new Twig_Environment($loader);
+        factory(
+            function (string $templateDirectory) {
+                $loader = new Twig_Loader_Filesystem($templateDirectory);
+                $twig = new Twig_Environment($loader);
 
-                    return new TemplateEngine($twig);
-                }
-            )->parameter('templateDirectory', get('templateDirectory')),
+                return new TemplateEngine($twig);
+            }
+        )->parameter('templateDirectory', get('templateDirectory')),
+        ConnectionApiClientInterface::class =>
+        create(ConnectionGuzzleApiClient::class)
+            ->constructor(
+                create(Client::class)
+            ),
         'databaseFile' => __DIR__.'/../data/usergroups.sqlite',
         'templateDirectory' => __DIR__.'/../templates/'
     ]
