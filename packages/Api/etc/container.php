@@ -8,7 +8,7 @@ use Vonq\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
 use Vonq\Api\Infrastructure\WebController\CreateConnectionRequestController;
 use Vonq\Api\Infrastructure\WebController\UserConnectionListController;
 use Zend\Diactoros\Response;
-use Psr\Http\Message\ResponseInterface;
+use Zend\Diactoros\Response\JsonResponse;
 
 use function DI\create;
 use function DI\get;
@@ -23,13 +23,13 @@ $containerBuilder->addDefinitions(
         CreateConnectionRequestController::class => 
             create(CreateConnectionRequestController::class)
             ->constructor(
-                get(ResponseInterface::class),
+                get(Response::class),
                 get(ConnectionService::class)
             ),
         UserConnectionListController::class => 
             create(UserConnectionListController::class)
             ->constructor(
-                get(ResponseInterface::class),
+                get(JsonResponse::class),
                 get(ConnectionService::class)
             ),
         ConnectionService::class => 
@@ -38,7 +38,10 @@ $containerBuilder->addDefinitions(
         ConnectionRepositoryInterface::class => 
             create(ConnectionSqliteRepository::class)
             ->constructor(get('databaseFile')),
-        ResponseInterface::class => function () {
+        JsonResponse::class => function () {
+            return new JsonResponse([]);
+        },
+        Response::class => function () {
             return new Response();
         },
         'databaseFile' => __DIR__.'/../data/connections.sqlite'

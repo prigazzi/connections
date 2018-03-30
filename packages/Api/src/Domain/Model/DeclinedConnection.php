@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Vonq\Api\Domain\Model;
 
-class DeclinedConnection implements ConnectionInterface
+use JsonSerializable;
+
+class DeclinedConnection implements ConnectionInterface, JsonSerializable
 {
     use Connection;
 }

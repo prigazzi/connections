@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Vonq\Api\Infrastructure\WebController;
 
+use Exception;
+use Vonq\Api\Application\Exception\ConnectionAlreadyExistsException;
 use Vonq\Api\Application\Service\ConnectionService;
 use Vonq\Api\Domain\Model\UserId;
 use Psr\Http\Message\ResponseInterface;
@@ -34,10 +36,12 @@ class CreateConnectionRequestController
             $userTo = UserId::fromString($body->userTo);
 
             $this->service->inviteUserToConnect($userFrom, $userTo);
+        } catch (ConnectionAlreadyExistsException $e) {
+            $response = $response->withStatus(409, $e->getMessage());
         } catch (InvalidArgumentException $e) {
-            $response = $response->withStatus(409);
-        } catch (\Throwable $e) {
-            $response = $response->withStatus(500, $e->getMessage());
+            $response = $response->withStatus(400);
+        } catch (Exception $e) {
+            $response = $response->withStatus(500);
         }
 
         return $response;

@@ -31,4 +31,12 @@ trait Connection
     {
         return $this->to;
     }
+
+    public function jsonSerialize()
+    {
+        return [
+            'userFrom' => $this->fromUserId()->toString(),
+            'userTo' => $this->toUserId()->toString()
+        ];
+    }
 }

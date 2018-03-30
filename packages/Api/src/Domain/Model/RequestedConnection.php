@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Vonq\Api\Domain\Model;
 
-class RequestedConnection implements ConnectionInterface
+use JsonSerializable;
+
+class RequestedConnection implements ConnectionInterface, JsonSerializable
 {
     use Connection;
 }

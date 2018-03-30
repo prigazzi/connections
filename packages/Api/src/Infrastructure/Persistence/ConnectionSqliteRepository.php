@@ -7,7 +7,6 @@ use Vonq\Api\Domain\Model\ConnectionInterface;
 use Vonq\Api\Domain\Model\ConnectionList;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
 use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
-use \InvalidArgumentException;
 use \RuntimeException;
 use \Sqlite3;
 
@@ -41,12 +40,6 @@ class ConnectionSqliteRepository implements ConnectionRepositoryInterface
 
     public function save(ConnectionInterface $connection)
     {
-        if ($this->exists($connection)) {
-            throw new InvalidArgumentException(
-                'Trying to create an already existing connection'
-            );
-        }
-
         $user_from = Sqlite3::escapeString($connection->fromUserId()->toString());
         $user_to = Sqlite3::escapeString($connection->toUserId()->toString());
         $type = ConnectionTypeMapper::mapInstance($connection);
@@ -71,7 +64,7 @@ class ConnectionSqliteRepository implements ConnectionRepositoryInterface
         $this->database->exec($query);
     }
 
-    private function exists(ConnectionInterface $connection)
+    public function exists(ConnectionInterface $connection)
     {
         $user_from = Sqlite3::escapeString($connection->fromUserId()->toString());
         $user_to = Sqlite3::escapeString($connection->toUserId()->toString());
