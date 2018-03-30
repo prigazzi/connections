@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace Vonq\Api\Application\Service;
 
+use Vonq\Api\Application\Exception\CantAcceptRelationshipException;
 use Vonq\Api\Application\Exception\ConnectionAlreadyExistsException;
 use Vonq\Api\Domain\Model\ConnectionList;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
+use Vonq\Api\Domain\Model\RelationshipConnection;
 use Vonq\Api\Domain\Model\RequestedConnection;
 use Vonq\Api\Domain\Model\UserId;
 use Vonq\Api\Infrastructure\Persistence\Specification\AllConnectionsForUserSqliteSpecification;
@@ -37,8 +39,23 @@ class ConnectionService
         $this->repository->save($request);
     }
 
-    public function acceptUserInvitation(UserId $invited, UserId $invitee)
+    public function acceptUserInvitation(UserId $invitee, UserId $invited)
     {
-        $this->repository->save(new RequestedConnection($invitee, $invited));
+        $request = new RequestedConnection($invitee, $invited);
+        $relationship = new RelationshipConnection($invitee, $invited);
+
+        if ($this->repository->exists($request) === false) {
+            throw new CantAcceptRelationshipException(
+                "Can't accept a Relationship that hasn't been requested"
+            );
+        }
+
+        if ($this->repository->exists($relationship)) {
+            throw new CantAcceptRelationshipException(
+                "This Relationship Request has already been confirmed"
+            );
+        }
+
+        $this->repository->save(new RelationshipConnection($invitee, $invited));
     }
 }

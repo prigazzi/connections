@@ -5,6 +5,7 @@ use DI\ContainerBuilder;
 use Vonq\Api\Application\Service\ConnectionService;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
 use Vonq\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
+use Vonq\Api\Infrastructure\WebController\AcceptConnectionRequestController;
 use Vonq\Api\Infrastructure\WebController\CreateConnectionRequestController;
 use Vonq\Api\Infrastructure\WebController\UserConnectionListController;
 use Zend\Diactoros\Response;
@@ -22,6 +23,12 @@ $containerBuilder->addDefinitions(
     [
         CreateConnectionRequestController::class => 
             create(CreateConnectionRequestController::class)
+            ->constructor(
+                get(Response::class),
+                get(ConnectionService::class)
+            ),
+        AcceptConnectionRequestController::class =>
+            create(AcceptConnectionRequestController::class)
             ->constructor(
                 get(Response::class),
                 get(ConnectionService::class)
