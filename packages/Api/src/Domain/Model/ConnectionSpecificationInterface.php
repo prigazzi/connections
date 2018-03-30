@@ -5,5 +5,4 @@ namespace Vonq\Api\Domain\Model;
 
 interface ConnectionSpecificationInterface
 {
-
 }

@@ -21,7 +21,7 @@ $containerBuilder->addDefinitions(
             ->constructor(get(ResponseInterface::class)),
         UserConnectionListController::class => create(UserConnectionListController::class)
             ->constructor(get(ResponseInterface::class)),
-        ResponseInterface::class => function() {
+        ResponseInterface::class => function () {
             return new Response();
         }
     ]

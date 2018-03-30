@@ -20,7 +20,6 @@ class ConnectionService
         UserId $userId,
         ConnectionSpecificationInterface $specification = null
     ): ConnectionList {
-        
     }
 
     public function inviteUserToConnect(UserId $invitee, UserId $invited)
@@ -30,6 +29,5 @@ class ConnectionService
 
     public function acceptUserInvitation(UserId $invited, UserId $invitee)
     {
-        
     }
 }

@@ -24,7 +24,6 @@ class ConnectionSqliteRepository implements ConnectionRespositoryInterface
     
     public function forUserIdAndCriteria(UserId $userId, ConnectionSelectionCriteria $criteria)
     {
-
     }
 
     public function save(ConnectionInterface $connection)

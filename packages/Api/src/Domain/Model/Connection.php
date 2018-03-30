@@ -12,8 +12,7 @@ trait Connection
 
     public function __construct(UserId $from, UserId $to)
     {
-        if ($from->equals($to))
-        {
+        if ($from->equals($to)) {
             throw new InvalidArgumentException(
                 "We can't create a Connection between the same user {$from->toString()}"
             );
