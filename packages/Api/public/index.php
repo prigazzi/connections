@@ -13,4 +13,4 @@ $requestHandler = new Relay($middlewareQueue);
 $response = $requestHandler->handle(ServerRequestFactory::fromGlobals());
 
 $emitter = new SapiEmitter();
-return $emitter->emit($response);
+$emitter->emit($response);
