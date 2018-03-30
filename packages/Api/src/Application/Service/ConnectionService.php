@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Vonq\Api\Application\Service;
 
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
+use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
+use Vonq\Api\Domain\Model\RequestedConnection;
 
 class ConnectionService
 {
@@ -16,12 +18,17 @@ class ConnectionService
 
     public function retrieveConnectionsForUser(
         UserId $userId,
-        ConnectionSelectionCriteria $criteria = null
+        ConnectionSpecificationInterface $specification = null
     ): ConnectionList {
         
     }
 
     public function inviteUserToConnect(UserId $invitee, UserId $invited)
+    {
+        $this->repository->save(new RequestedConnection($invitee, $invited));
+    }
+
+    public function acceptUserInvitation(UserId $invited, UserId $invitee)
     {
         
     }
