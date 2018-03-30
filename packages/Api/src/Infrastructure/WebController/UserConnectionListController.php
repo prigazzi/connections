@@ -5,22 +5,33 @@ namespace Vonq\Api\Infrastructure\WebController;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Vonq\Api\Application\Service\ConnectionService;
+use Vonq\Api\Domain\Model\UserId;
 
 class UserConnectionListController
 {
+    /** @var ResponseInterface */
     private $response;
-    
-    public function __construct(ResponseInterface $response)
+
+    /** @var ConnectionService */
+    private $service;
+
+    public function __construct(ResponseInterface $response, ConnectionService $service)
     {
         $this->response = clone $response;
+        $this->service = $service;
     }
     
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $userId = $request->getAttribute('userId');
+        $response = $this->response
+            ->withHeader('Content-type', 'text/html')
+            ->withStatus(200);
+        $userId = UserId::fromString($request->getAttribute('userId'));
+
+        $connectionList = $this->service->retrieveConnectionsForUser($userId);
         
-        $response = $this->response->withHeader('Content-type', 'text/html');
-        $response->getBody()->write("List of User Connections for user {$userId}");
+        $response->getBody()->write(var_dump($connectionList->toArray()));
 
         return $response;
     }

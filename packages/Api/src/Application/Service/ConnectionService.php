@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Vonq\Api\Application\Service;
 
+use Vonq\Api\Domain\Model\ConnectionList;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
-use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
 use Vonq\Api\Domain\Model\RequestedConnection;
 use Vonq\Api\Domain\Model\UserId;
+use Vonq\Api\Infrastructure\Persistence\Specification\AllConnectionsForUserSqliteSpecification;
 
 class ConnectionService
 {
@@ -17,10 +18,9 @@ class ConnectionService
         $this->repository = $repository;
     }
 
-    public function retrieveConnectionsForUser(
-        UserId $userId,
-        ConnectionSpecificationInterface $specification = null
-    ): ConnectionList {
+    public function retrieveConnectionsForUser(UserId $userId): ConnectionList
+    {
+        return $this->repository->query(new AllConnectionsForUserSqliteSpecification($userId));
     }
 
     public function inviteUserToConnect(UserId $invitee, UserId $invited)
@@ -30,5 +30,6 @@ class ConnectionService
 
     public function acceptUserInvitation(UserId $invited, UserId $invitee)
     {
+        $this->repository->save(new RequestedConnection($invitee, $invited));
     }
 }

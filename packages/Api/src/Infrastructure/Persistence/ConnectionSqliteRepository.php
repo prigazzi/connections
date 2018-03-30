@@ -4,16 +4,16 @@ declare(strict_types=1);
 namespace Vonq\Api\Infrastructure\Persistence;
 
 use Vonq\Api\Domain\Model\ConnectionInterface;
+use Vonq\Api\Domain\Model\ConnectionList;
 use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
-use Vonq\Api\Domain\Model\ConnectionSelectionCriteria;
-use Vonq\Api\Domain\Model\UserId;
+use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
 use \InvalidArgumentException;
 use \RuntimeException;
 use \Sqlite3;
 
 class ConnectionSqliteRepository implements ConnectionRepositoryInterface
 {
-    private $databse;
+    private $database;
     private $mapper;
     
     public function __construct(string $databaseFile)
@@ -23,8 +23,20 @@ class ConnectionSqliteRepository implements ConnectionRepositoryInterface
         $this->createSchema();
     }
     
-    public function forUserIdAndCriteria(UserId $userId, ConnectionSelectionCriteria $criteria)
+    public function query(ConnectionSpecificationInterface $specification)
     {
+        $connectionList = [];
+        $result = $this->database->query($specification->toSql());
+
+        if ($result->numColumns() === 0 && $result->columnType(0) === SQLITE3_NULL) {
+            return null;
+        }
+
+        while ($record = $result->fetchArray(SQLITE3_ASSOC)) {
+            $connectionList[] = $this->mapper->fromRecord($record);
+        }
+
+        return new ConnectionList(...$connectionList);
     }
 
     public function save(ConnectionInterface $connection)

@@ -16,10 +16,20 @@ class ConnectionTypeMapper
         RequestedConnection::class => 'requested'
     ];
 
+    public static function mapClassName(string $connectionClass): string
+    {
+        return self::SUPPORTED_TYPES[$connectionClass] ?? self::SUPPORTED_TYPES[RequestedConnection::class];
+    }
+
     public static function mapInstance(ConnectionInterface $connection): string
     {
-        $connectionClass = get_class($connection);
+        return self::mapClassName(get_class($connection));
+    }
 
-        return self::SUPPORTED_TYPES[$connectionClass] ?? self::SUPPORTED_TYPES[RequestedConnection::class];
+    public static function mapType(string $type): string
+    {
+        $supportedTypes = array_flip(self::SUPPORTED_TYPES);
+
+        return $supportedTypes[$type] ?? $supportedTypes['requested'];
     }
 }

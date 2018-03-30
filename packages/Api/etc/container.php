@@ -28,7 +28,10 @@ $containerBuilder->addDefinitions(
             ),
         UserConnectionListController::class => 
             create(UserConnectionListController::class)
-            ->constructor(get(ResponseInterface::class)),
+            ->constructor(
+                get(ResponseInterface::class),
+                get(ConnectionService::class)
+            ),
         ConnectionService::class => 
             create(ConnectionService::class)
             ->constructor(get(ConnectionRepositoryInterface::class)),

@@ -5,4 +5,5 @@ namespace Vonq\Api\Domain\Model;
 
 interface ConnectionSpecificationInterface
 {
+    public function toSql(): string;
 }
