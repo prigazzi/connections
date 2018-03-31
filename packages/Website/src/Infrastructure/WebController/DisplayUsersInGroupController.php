@@ -11,8 +11,6 @@ use Zend\Diactoros\Response\HtmlResponse;
 
 class DisplayUsersInGroupController
 {
-    const DEFAULT_GROUP_ID = '9be55c55-d238-4ebf-885f-ceafb2cb8c72';
-
     /** @var TemplateEngineInterface */
     private $templateEngine;
 
@@ -30,7 +28,7 @@ class DisplayUsersInGroupController
     public function __invoke(ServerRequestInterface $request)
     {
         $groupListViewData = $this->userGroupService->userListInformationForGroup(
-            GroupId::fromString(self::DEFAULT_GROUP_ID)
+            GroupId::fromString(UserGroupService::DEFAULT_GROUP_ID)
         );
 
         $view = $this->templateEngine->render('users_in_group.html', $groupListViewData);

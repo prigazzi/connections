@@ -10,6 +10,7 @@ use Vonq\Website\Domain\Model\GroupId;
 use Vonq\Website\Domain\Model\GroupList;
 use Vonq\Website\Domain\Model\GroupRepositoryInterface;
 use Vonq\Website\Domain\Model\SpecificationInterface;
+use Vonq\Website\Infrastructure\Persistence\Specification\GroupByIdSqliteSpecification;
 
 class GroupSqliteRepository implements GroupRepositoryInterface
 {
@@ -37,9 +38,35 @@ class GroupSqliteRepository implements GroupRepositoryInterface
         return new GroupList(...$groupList);
     }
 
-    public function exists(GroupId $groupId)
+    public function exists(GroupId $groupId): bool
     {
+        return count($this->query(new GroupByIdSqliteSpecification($groupId))) === 1;
+    }
 
+    public function save(Group $group)
+    {
+        $group_id = Sqlite3::escapeString($group->getGroupId()->toString());
+        $name = Sqlite3::escapeString($group->getName());
+        $description = Sqlite3::escapeString($group->getDescription());
+
+        $query = "
+        INSERT INTO VONQ_GROUPS
+        (
+            group_group_id,
+            group_name,
+            group_description,
+            group_created_on
+        )
+        VALUES
+        (
+            '{$group_id}',
+            '{$name}',
+            '{$description}',
+            CURRENT_TIMESTAMP
+        )
+        ";
+
+        $this->database->exec($query);
     }
 
     private function createSchema()

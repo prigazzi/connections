@@ -18,6 +18,8 @@ use Vonq\Website\Infrastructure\Persistence\UserSqliteRepository;
 
 class UserGroupService
 {
+    const DEFAULT_GROUP_ID = '9be55c55-d238-4ebf-885f-ceafb2cb8c72';
+
     /** @var GroupSqliteRepository */
     private $groupRepository;
 

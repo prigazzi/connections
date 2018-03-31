@@ -11,6 +11,7 @@ use Vonq\Website\Domain\Model\User;
 use Vonq\Website\Domain\Model\UserId;
 use Vonq\Website\Domain\Model\UserList;
 use Vonq\Website\Domain\Model\UserRepositoryInterface;
+use Vonq\Website\Infrastructure\Persistence\Specification\UserByIdSqliteSpecification;
 
 class UserSqliteRepository implements UserRepositoryInterface
 {
@@ -38,9 +39,35 @@ class UserSqliteRepository implements UserRepositoryInterface
         return new UserList(...$userList);
     }
 
-    public function exists(UserId $userId)
+    public function exists(UserId $userId): bool
     {
+        return count($this->query(new UserByIdSqliteSpecification($userId))) === 1;
+    }
 
+    public function save(User $user)
+    {
+        $user_id = Sqlite3::escapeString($user->getUserId()->toString());
+        $group_id = Sqlite3::escapeString($user->getGroupId()->toString());
+        $name = Sqlite3::escapeString($user->getName());
+
+        $query = "
+        INSERT INTO VONQ_USERS
+        (
+            user_user_id,
+            user_group_id,
+            user_name,
+            user_created_on
+        )
+        VALUES
+        (
+            '{$user_id}',
+            '{$group_id}',
+            '{$name}',
+            CURRENT_TIMESTAMP
+        )
+        ";
+
+        $this->database->exec($query);
     }
 
     private function createSchema()

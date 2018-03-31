@@ -1,14 +1,82 @@
 #!/usr/bin/php
 <?php
+
+use Vonq\Api\Domain\Model\RequestedConnection;
+use Vonq\Api\Domain\Model\UserId as ApiUserId;
 use Vonq\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
+use Vonq\Website\Application\Service\UserGroupService;
+use Vonq\Website\Domain\Model\Group;
+use Vonq\Website\Domain\Model\GroupId;
+use Vonq\Website\Domain\Model\User;
+use Vonq\Website\Domain\Model\UserId;
 use Vonq\Website\Infrastructure\Persistence\GroupSqliteRepository;
 use Vonq\Website\Infrastructure\Persistence\UserSqliteRepository;
 
 include_once __DIR__ . '/../vendor/autoload.php';
 
-$connectionsContainer = include __DIR__.'/../packages/Api/etc/container.php';
-$repo = (new ConnectionSqliteRepository($connectionsContainer->get('databaseFile')));
-
+/**
+ * Create the Schemas
+ */
 $userGroupsContainer = include __DIR__.'/../packages/Website/etc/container.php';
-$userRep = (new UserSqliteRepository($userGroupsContainer->get('databaseFile')));
+$userRepo = (new UserSqliteRepository($userGroupsContainer->get('databaseFile')));
 $groupRepo = (new GroupSqliteRepository($userGroupsContainer->get('databaseFile')));
+
+$connectionsContainer = include __DIR__.'/../packages/Api/etc/container.php';
+$connectionRepo = (new ConnectionSqliteRepository($connectionsContainer->get('databaseFile')));
+
+/**
+ * Create the Group
+ */
+$groupRepo->save(new Group(
+    GroupId::fromString(UserGroupService::DEFAULT_GROUP_ID),
+    'General',
+    'The group we all belong at first'
+));
+
+/**
+ * Add some Users to the group
+ */
+$userRepo->save(new User(
+    UserId::fromString('63e82b8b-92e9-42c3-8ee2-0ccadeb454ee'),
+    GroupId::fromString(UserGroupService::DEFAULT_GROUP_ID),
+    'Pablo'
+));
+
+$userRepo->save(new User(
+    UserId::fromString('195dbe65-7ce2-466c-ba51-80bad21049b5'),
+    GroupId::fromString(UserGroupService::DEFAULT_GROUP_ID),
+    'Victoria'
+));
+
+$userRepo->save(new User(
+    UserId::fromString('7d038889-3989-4e74-8e47-754f3508c994'),
+    GroupId::fromString(UserGroupService::DEFAULT_GROUP_ID),
+    'Benjamin'
+));
+
+$userRepo->save(new User(
+    UserId::fromString('698f38f9-b1c6-489b-ab1d-f8cb1b807401'),
+    GroupId::fromString(UserGroupService::DEFAULT_GROUP_ID),
+    'Roberto'
+));
+
+/**
+ * Create some Connections
+ */
+// From Pablo to Victoria
+$connectionRepo->save(new RequestedConnection(
+    ApiUserId::fromString('63e82b8b-92e9-42c3-8ee2-0ccadeb454ee'),
+    ApiUserId::fromString('195dbe65-7ce2-466c-ba51-80bad21049b5')
+));
+
+// From Pablo to Benjamin
+$connectionRepo->save(new RequestedConnection(
+    ApiUserId::fromString('63e82b8b-92e9-42c3-8ee2-0ccadeb454ee'),
+    ApiUserId::fromString('7d038889-3989-4e74-8e47-754f3508c994')
+));
+
+// From Benjamin to Roberto
+$connectionRepo->save(new RequestedConnection(
+    ApiUserId::fromString('7d038889-3989-4e74-8e47-754f3508c994'),
+    ApiUserId::fromString('698f38f9-b1c6-489b-ab1d-f8cb1b807401')
+));

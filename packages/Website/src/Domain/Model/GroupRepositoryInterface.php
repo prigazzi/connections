@@ -5,7 +5,7 @@ namespace Vonq\Website\Domain\Model;
 
 interface GroupRepositoryInterface
 {
-    public function query(SpecificationInterface $specification);
+    public function query(SpecificationInterface $specification): GroupList;
 
-    public function exists(GroupId $groupId);
+    public function exists(GroupId $groupId): bool;
 }
