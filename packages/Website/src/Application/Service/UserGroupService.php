@@ -6,8 +6,10 @@ namespace Vonq\Website\Application\Service;
 use InvalidArgumentException;
 use Vonq\Website\Domain\Model\Group;
 use Vonq\Website\Domain\Model\GroupId;
+use Vonq\Website\Domain\Model\GroupRepositoryInterface;
 use Vonq\Website\Domain\Model\User;
 use Vonq\Website\Domain\Model\UserId;
+use Vonq\Website\Domain\Model\UserRepositoryInterface;
 use Vonq\Website\Infrastructure\Api\ConnectionApiClientInterface;
 use Vonq\Website\Infrastructure\Persistence\GroupSqliteRepository;
 use Vonq\Website\Infrastructure\Persistence\Specification\GroupByIdSqliteSpecification;
@@ -20,18 +22,18 @@ class UserGroupService
 {
     const DEFAULT_GROUP_ID = '9be55c55-d238-4ebf-885f-ceafb2cb8c72';
 
-    /** @var GroupSqliteRepository */
+    /** @var GroupRepositoryInterface */
     private $groupRepository;
 
-    /** @var UserSqliteRepository */
+    /** @var UserRepositoryInterface */
     private $userRepository;
 
     /** @var ConnectionApiClientInterface */
     private $apiClient;
 
     public function __construct(
-        GroupSqliteRepository $groupRepository,
-        UserSqliteRepository $userRepository,
+        GroupRepositoryInterface $groupRepository,
+        UserRepositoryInterface $userRepository,
         ConnectionApiClientInterface $apiClient
     ) {
         $this->groupRepository = $groupRepository;
@@ -43,7 +45,7 @@ class UserGroupService
     {
         $groupList = $this->groupRepository->query(new GroupByIdSqliteSpecification($groupId));
 
-        if (count($groupList) === 0) {
+        if (count($groupList) !== 1) {
             throw new InvalidArgumentException(
                 'The requested group doesn\'t exist'
             );

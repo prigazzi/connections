@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace Vonq\Website\Infrastructure\WebController;
 
+use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface;
 use Vonq\Website\Application\Service\UserGroupService;
 use Vonq\Website\Domain\Model\GroupId;
 use Vonq\Website\Infrastructure\Presentation\TemplateEngineInterface;
+use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\Response\HtmlResponse;
 
 class DisplayUsersInGroupController
@@ -27,12 +29,16 @@ class DisplayUsersInGroupController
 
     public function __invoke(ServerRequestInterface $request)
     {
-        $groupListViewData = $this->userGroupService->userListInformationForGroup(
-            GroupId::fromString(UserGroupService::DEFAULT_GROUP_ID)
-        );
+        try {
+            $groupListViewData = $this->userGroupService->userListInformationForGroup(
+                GroupId::fromString(UserGroupService::DEFAULT_GROUP_ID)
+            );
+            $view = $this->templateEngine->render('users_in_group.html', $groupListViewData);
+            $response = new HtmlResponse($view);
+        } catch (InvalidArgumentException $exception) {
+            $response = (new EmptyResponse())->withStatus(404);
+        }
 
-        $view = $this->templateEngine->render('users_in_group.html', $groupListViewData);
-
-        return new HtmlResponse($view);
+        return $response;
     }
 }
