@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Tests\Unit\Domain\Model;
+namespace Connections\Api\Tests\Unit\Domain\Model;
 
-use Vonq\Api\Domain\Model\UserId;
-use Vonq\Api\Domain\Model\ConnectionInterface;
-use Vonq\Api\Domain\Model\Connection;
+use Connections\Api\Domain\Model\UserId;
+use Connections\Api\Domain\Model\ConnectionInterface;
+use Connections\Api\Domain\Model\Connection;
 use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;
 

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Infrastructure\Persistence\Specification;
+namespace Connections\Website\Infrastructure\Persistence\Specification;
 
 use SQLite3;
-use Vonq\Website\Domain\Model\GroupId;
-use Vonq\Website\Domain\Model\SpecificationInterface;
+use Connections\Website\Domain\Model\GroupId;
+use Connections\Website\Domain\Model\SpecificationInterface;
 
 class GroupByIdSqliteSpecification implements SpecificationInterface
 {

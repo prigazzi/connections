@@ -1,16 +1,16 @@
 #!/usr/bin/php
 <?php
 
-use Vonq\Api\Domain\Model\RequestedConnection;
-use Vonq\Api\Domain\Model\UserId as ApiUserId;
-use Vonq\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
-use Vonq\Website\Application\Service\UserGroupService;
-use Vonq\Website\Domain\Model\Group;
-use Vonq\Website\Domain\Model\GroupId;
-use Vonq\Website\Domain\Model\User;
-use Vonq\Website\Domain\Model\UserId;
-use Vonq\Website\Infrastructure\Persistence\GroupSqliteRepository;
-use Vonq\Website\Infrastructure\Persistence\UserSqliteRepository;
+use Connections\Api\Domain\Model\RequestedConnection;
+use Connections\Api\Domain\Model\UserId as ApiUserId;
+use Connections\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
+use Connections\Website\Application\Service\UserGroupService;
+use Connections\Website\Domain\Model\Group;
+use Connections\Website\Domain\Model\GroupId;
+use Connections\Website\Domain\Model\User;
+use Connections\Website\Domain\Model\UserId;
+use Connections\Website\Infrastructure\Persistence\GroupSqliteRepository;
+use Connections\Website\Infrastructure\Persistence\UserSqliteRepository;
 
 include_once __DIR__ . '/../vendor/autoload.php';
 

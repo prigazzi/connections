@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Application\Exception;
+namespace Connections\Api\Application\Exception;
 
 use \RuntimeException;
 

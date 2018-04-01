@@ -25,14 +25,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Vonq\\Api\\": "packages/Api/src",
-            "Vonq\\Website\\": "packages/Website/src"
+            "Connections\\Api\\": "packages/Api/src",
+            "Connections\\Website\\": "packages/Website/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Vonq\\Api\\Tests\\": "packages/Api/tests",
-            "Vonq\\Website\\Tests\\": "packages/Website/tests"
+            "Connections\\Api\\Tests\\": "packages/Api/tests",
+            "Connections\\Website\\Tests\\": "packages/Website/tests"
         }
     }
 }

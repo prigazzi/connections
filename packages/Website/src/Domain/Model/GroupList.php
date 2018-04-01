@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Domain\Model;
+namespace Connections\Website\Domain\Model;
 
 class GroupList extends GenericList
 {

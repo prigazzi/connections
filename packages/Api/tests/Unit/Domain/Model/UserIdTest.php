@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Tests\Unit\Domain\Model;
+namespace Connections\Api\Tests\Unit\Domain\Model;
 
-use Vonq\Api\Domain\Model\UserId;
+use Connections\Api\Domain\Model\UserId;
 use PHPUnit\Framework\TestCase;
 
 class UserIdTest extends TestCase

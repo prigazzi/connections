@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Infrastructure\Persistence;
+namespace Connections\Api\Infrastructure\Persistence;
 
-use Vonq\Api\Domain\Model\UserId;
+use Connections\Api\Domain\Model\UserId;
 
 class ConnectionDataMapper
 {

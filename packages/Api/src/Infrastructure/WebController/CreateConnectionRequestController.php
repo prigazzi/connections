@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Infrastructure\WebController;
+namespace Connections\Api\Infrastructure\WebController;
 
 use Exception;
-use Vonq\Api\Application\Exception\ConnectionAlreadyExistsException;
-use Vonq\Api\Application\Service\ConnectionService;
-use Vonq\Api\Domain\Model\UserId;
+use Connections\Api\Application\Exception\ConnectionAlreadyExistsException;
+use Connections\Api\Application\Service\ConnectionService;
+use Connections\Api\Domain\Model\UserId;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use \InvalidArgumentException;

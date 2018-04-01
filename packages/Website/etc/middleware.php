@@ -4,8 +4,8 @@ declare(strict_types=1);
 use FastRoute\RouteCollector;
 use Middlewares\FastRoute;
 use Middlewares\RequestHandler;
-use Vonq\Website\Infrastructure\WebController\DisplayUserContactsController;
-use Vonq\Website\Infrastructure\WebController\DisplayUsersInGroupController;
+use Connections\Website\Infrastructure\WebController\DisplayUserContactsController;
+use Connections\Website\Infrastructure\WebController\DisplayUsersInGroupController;
 
 use function FastRoute\simpleDispatcher;
 

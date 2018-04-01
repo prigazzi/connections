@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Infrastructure\Api;
+namespace Connections\Website\Infrastructure\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
-use Vonq\Website\Domain\Model\UserId;
+use Connections\Website\Domain\Model\UserId;
 
 class ConnectionGuzzleApiClient implements ConnectionApiClientInterface
 {

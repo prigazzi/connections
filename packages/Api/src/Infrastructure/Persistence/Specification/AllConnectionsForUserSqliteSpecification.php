@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Infrastructure\Persistence\Specification;
+namespace Connections\Api\Infrastructure\Persistence\Specification;
 
 use SQLite3;
-use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
-use Vonq\Api\Domain\Model\UserId;
+use Connections\Api\Domain\Model\ConnectionSpecificationInterface;
+use Connections\Api\Domain\Model\UserId;
 
 class AllConnectionsForUserSqliteSpecification implements ConnectionSpecificationInterface
 {

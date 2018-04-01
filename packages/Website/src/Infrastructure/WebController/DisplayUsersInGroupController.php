@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Infrastructure\WebController;
+namespace Connections\Website\Infrastructure\WebController;
 
 use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface;
-use Vonq\Website\Application\Service\UserGroupService;
-use Vonq\Website\Domain\Model\GroupId;
-use Vonq\Website\Infrastructure\Presentation\TemplateEngineInterface;
+use Connections\Website\Application\Service\UserGroupService;
+use Connections\Website\Domain\Model\GroupId;
+use Connections\Website\Infrastructure\Presentation\TemplateEngineInterface;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\Response\HtmlResponse;
 

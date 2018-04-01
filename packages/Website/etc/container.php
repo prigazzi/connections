@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 use DI\ContainerBuilder;
 use GuzzleHttp\Client;
-use Vonq\Website\Application\Service\UserGroupService;
-use Vonq\Website\Domain\Model\GroupRepositoryInterface;
-use Vonq\Website\Domain\Model\UserRepositoryInterface;
-use Vonq\Website\Infrastructure\Api\ConnectionApiClientInterface;
-use Vonq\Website\Infrastructure\Api\ConnectionGuzzleApiClient;
-use Vonq\Website\Infrastructure\Persistence\GroupSqliteRepository;
-use Vonq\Website\Infrastructure\Persistence\UserSqliteRepository;
-use Vonq\Website\Infrastructure\Presentation\TemplateEngine;
-use Vonq\Website\Infrastructure\Presentation\TemplateEngineInterface;
-use Vonq\Website\Infrastructure\WebController\DisplayUserContactsController;
-use Vonq\Website\Infrastructure\WebController\DisplayUsersInGroupController;
+use Connections\Website\Application\Service\UserGroupService;
+use Connections\Website\Domain\Model\GroupRepositoryInterface;
+use Connections\Website\Domain\Model\UserRepositoryInterface;
+use Connections\Website\Infrastructure\Api\ConnectionApiClientInterface;
+use Connections\Website\Infrastructure\Api\ConnectionGuzzleApiClient;
+use Connections\Website\Infrastructure\Persistence\GroupSqliteRepository;
+use Connections\Website\Infrastructure\Persistence\UserSqliteRepository;
+use Connections\Website\Infrastructure\Presentation\TemplateEngine;
+use Connections\Website\Infrastructure\Presentation\TemplateEngineInterface;
+use Connections\Website\Infrastructure\WebController\DisplayUserContactsController;
+use Connections\Website\Infrastructure\WebController\DisplayUsersInGroupController;
 
 use function DI\create;
 use function DI\get;

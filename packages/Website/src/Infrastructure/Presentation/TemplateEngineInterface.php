@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Infrastructure\Presentation;
+namespace Connections\Website\Infrastructure\Presentation;
 
 interface TemplateEngineInterface
 {

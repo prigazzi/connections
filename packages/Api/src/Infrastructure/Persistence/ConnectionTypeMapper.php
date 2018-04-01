@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Infrastructure\Persistence;
+namespace Connections\Api\Infrastructure\Persistence;
 
-use Vonq\Api\Domain\Model\ConnectionInterface;
-use Vonq\Api\Domain\Model\DeclinedConnection;
-use Vonq\Api\Domain\Model\RelationshipConnection;
-use Vonq\Api\Domain\Model\RequestedConnection;
+use Connections\Api\Domain\Model\ConnectionInterface;
+use Connections\Api\Domain\Model\DeclinedConnection;
+use Connections\Api\Domain\Model\RelationshipConnection;
+use Connections\Api\Domain\Model\RequestedConnection;
 
 class ConnectionTypeMapper
 {

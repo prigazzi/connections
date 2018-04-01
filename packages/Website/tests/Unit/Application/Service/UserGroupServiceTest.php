@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Tests\Application\Service;
+namespace Connections\Website\Tests\Application\Service;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Vonq\Website\Application\Service\UserGroupService;
-use Vonq\Website\Domain\Model\GroupId;
-use Vonq\Website\Domain\Model\GroupList;
-use Vonq\Website\Domain\Model\GroupRepositoryInterface;
-use Vonq\Website\Domain\Model\UserId;
-use Vonq\Website\Domain\Model\UserList;
-use Vonq\Website\Domain\Model\UserRepositoryInterface;
-use Vonq\Website\Infrastructure\Api\ConnectionApiClientInterface;
+use Connections\Website\Application\Service\UserGroupService;
+use Connections\Website\Domain\Model\GroupId;
+use Connections\Website\Domain\Model\GroupList;
+use Connections\Website\Domain\Model\GroupRepositoryInterface;
+use Connections\Website\Domain\Model\UserId;
+use Connections\Website\Domain\Model\UserList;
+use Connections\Website\Domain\Model\UserRepositoryInterface;
+use Connections\Website\Infrastructure\Api\ConnectionApiClientInterface;
 
 class UserGroupServiceTest extends TestCase
 {

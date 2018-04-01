@@ -2,12 +2,12 @@
 declare(strict_types=1);
 
 use DI\ContainerBuilder;
-use Vonq\Api\Application\Service\ConnectionService;
-use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
-use Vonq\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
-use Vonq\Api\Infrastructure\WebController\AcceptConnectionRequestController;
-use Vonq\Api\Infrastructure\WebController\CreateConnectionRequestController;
-use Vonq\Api\Infrastructure\WebController\UserConnectionListController;
+use Connections\Api\Application\Service\ConnectionService;
+use Connections\Api\Domain\Model\ConnectionRepositoryInterface;
+use Connections\Api\Infrastructure\Persistence\ConnectionSqliteRepository;
+use Connections\Api\Infrastructure\WebController\AcceptConnectionRequestController;
+use Connections\Api\Infrastructure\WebController\CreateConnectionRequestController;
+use Connections\Api\Infrastructure\WebController\UserConnectionListController;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\Response\JsonResponse;
 

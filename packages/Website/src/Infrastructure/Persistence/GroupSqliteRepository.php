@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Infrastructure\Persistence;
+namespace Connections\Website\Infrastructure\Persistence;
 
 use RuntimeException;
 use SQLite3;
-use Vonq\Website\Domain\Model\Group;
-use Vonq\Website\Domain\Model\GroupId;
-use Vonq\Website\Domain\Model\GroupList;
-use Vonq\Website\Domain\Model\GroupRepositoryInterface;
-use Vonq\Website\Domain\Model\SpecificationInterface;
-use Vonq\Website\Infrastructure\Persistence\Specification\GroupByIdSqliteSpecification;
+use Connections\Website\Domain\Model\Group;
+use Connections\Website\Domain\Model\GroupId;
+use Connections\Website\Domain\Model\GroupList;
+use Connections\Website\Domain\Model\GroupRepositoryInterface;
+use Connections\Website\Domain\Model\SpecificationInterface;
+use Connections\Website\Infrastructure\Persistence\Specification\GroupByIdSqliteSpecification;
 
 class GroupSqliteRepository implements GroupRepositoryInterface
 {

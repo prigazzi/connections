@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Infrastructure\Persistence;
+namespace Connections\Website\Infrastructure\Persistence;
 
 use RuntimeException;
 use SQLite3;
-use Vonq\Website\Domain\Model\GroupId;
-use Vonq\Website\Domain\Model\SpecificationInterface;
-use Vonq\Website\Domain\Model\User;
-use Vonq\Website\Domain\Model\UserId;
-use Vonq\Website\Domain\Model\UserList;
-use Vonq\Website\Domain\Model\UserRepositoryInterface;
-use Vonq\Website\Infrastructure\Persistence\Specification\UserByIdSqliteSpecification;
+use Connections\Website\Domain\Model\GroupId;
+use Connections\Website\Domain\Model\SpecificationInterface;
+use Connections\Website\Domain\Model\User;
+use Connections\Website\Domain\Model\UserId;
+use Connections\Website\Domain\Model\UserList;
+use Connections\Website\Domain\Model\UserRepositoryInterface;
+use Connections\Website\Infrastructure\Persistence\Specification\UserByIdSqliteSpecification;
 
 class UserSqliteRepository implements UserRepositoryInterface
 {

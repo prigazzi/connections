@@ -4,9 +4,9 @@ declare(strict_types=1);
 use FastRoute\RouteCollector;
 use Middlewares\FastRoute;
 use Middlewares\RequestHandler;
-use Vonq\Api\Infrastructure\WebController\AcceptConnectionRequestController;
-use Vonq\Api\Infrastructure\WebController\CreateConnectionRequestController;
-use Vonq\Api\Infrastructure\WebController\UserConnectionListController;
+use Connections\Api\Infrastructure\WebController\AcceptConnectionRequestController;
+use Connections\Api\Infrastructure\WebController\CreateConnectionRequestController;
+use Connections\Api\Infrastructure\WebController\UserConnectionListController;
 
 use function FastRoute\simpleDispatcher;
 

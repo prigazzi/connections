@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Infrastructure\Persistence;
+namespace Connections\Api\Infrastructure\Persistence;
 
-use Vonq\Api\Domain\Model\ConnectionInterface;
-use Vonq\Api\Domain\Model\ConnectionList;
-use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
-use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
+use Connections\Api\Domain\Model\ConnectionInterface;
+use Connections\Api\Domain\Model\ConnectionList;
+use Connections\Api\Domain\Model\ConnectionRepositoryInterface;
+use Connections\Api\Domain\Model\ConnectionSpecificationInterface;
 use \RuntimeException;
 use \Sqlite3;
 

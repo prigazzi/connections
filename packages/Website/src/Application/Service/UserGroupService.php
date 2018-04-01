@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Website\Application\Service;
+namespace Connections\Website\Application\Service;
 
 use InvalidArgumentException;
-use Vonq\Website\Domain\Model\Group;
-use Vonq\Website\Domain\Model\GroupId;
-use Vonq\Website\Domain\Model\GroupRepositoryInterface;
-use Vonq\Website\Domain\Model\User;
-use Vonq\Website\Domain\Model\UserId;
-use Vonq\Website\Domain\Model\UserRepositoryInterface;
-use Vonq\Website\Infrastructure\Api\ConnectionApiClientInterface;
-use Vonq\Website\Infrastructure\Persistence\GroupSqliteRepository;
-use Vonq\Website\Infrastructure\Persistence\Specification\GroupByIdSqliteSpecification;
-use Vonq\Website\Infrastructure\Persistence\Specification\UserByIdSqliteSpecification;
-use Vonq\Website\Infrastructure\Persistence\Specification\UsersByIdListSqliteSpecification;
-use Vonq\Website\Infrastructure\Persistence\Specification\UsersForGroupSqliteSpecification;
-use Vonq\Website\Infrastructure\Persistence\UserSqliteRepository;
+use Connections\Website\Domain\Model\Group;
+use Connections\Website\Domain\Model\GroupId;
+use Connections\Website\Domain\Model\GroupRepositoryInterface;
+use Connections\Website\Domain\Model\User;
+use Connections\Website\Domain\Model\UserId;
+use Connections\Website\Domain\Model\UserRepositoryInterface;
+use Connections\Website\Infrastructure\Api\ConnectionApiClientInterface;
+use Connections\Website\Infrastructure\Persistence\GroupSqliteRepository;
+use Connections\Website\Infrastructure\Persistence\Specification\GroupByIdSqliteSpecification;
+use Connections\Website\Infrastructure\Persistence\Specification\UserByIdSqliteSpecification;
+use Connections\Website\Infrastructure\Persistence\Specification\UsersByIdListSqliteSpecification;
+use Connections\Website\Infrastructure\Persistence\Specification\UsersForGroupSqliteSpecification;
+use Connections\Website\Infrastructure\Persistence\UserSqliteRepository;
 
 class UserGroupService
 {

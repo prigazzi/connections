@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Tests\Application\Service;
+namespace Connections\Api\Tests\Application\Service;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Vonq\Api\Application\Exception\CantAcceptRelationshipException;
-use Vonq\Api\Application\Exception\ConnectionAlreadyExistsException;
-use Vonq\Api\Application\Service\ConnectionService;
-use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
-use Vonq\Api\Domain\Model\RelationshipConnection;
-use Vonq\Api\Domain\Model\RequestedConnection;
-use Vonq\Api\Domain\Model\UserId;
+use Connections\Api\Application\Exception\CantAcceptRelationshipException;
+use Connections\Api\Application\Exception\ConnectionAlreadyExistsException;
+use Connections\Api\Application\Service\ConnectionService;
+use Connections\Api\Domain\Model\ConnectionRepositoryInterface;
+use Connections\Api\Domain\Model\RelationshipConnection;
+use Connections\Api\Domain\Model\RequestedConnection;
+use Connections\Api\Domain\Model\UserId;
 
 class ConnectionServiceTest extends TestCase
 {

@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Application\Service;
+namespace Connections\Api\Application\Service;
 
-use Vonq\Api\Application\Exception\CantAcceptRelationshipException;
-use Vonq\Api\Application\Exception\ConnectionAlreadyExistsException;
-use Vonq\Api\Domain\Model\ConnectionList;
-use Vonq\Api\Domain\Model\ConnectionRepositoryInterface;
-use Vonq\Api\Domain\Model\RelationshipConnection;
-use Vonq\Api\Domain\Model\RequestedConnection;
-use Vonq\Api\Domain\Model\UserId;
-use Vonq\Api\Infrastructure\Persistence\Specification\AllRelationshipsForUserSqliteSpecification;
+use Connections\Api\Application\Exception\CantAcceptRelationshipException;
+use Connections\Api\Application\Exception\ConnectionAlreadyExistsException;
+use Connections\Api\Domain\Model\ConnectionList;
+use Connections\Api\Domain\Model\ConnectionRepositoryInterface;
+use Connections\Api\Domain\Model\RelationshipConnection;
+use Connections\Api\Domain\Model\RequestedConnection;
+use Connections\Api\Domain\Model\UserId;
+use Connections\Api\Infrastructure\Persistence\Specification\AllRelationshipsForUserSqliteSpecification;
 
 class ConnectionService
 {

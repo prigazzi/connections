@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Vonq\Api\Infrastructure\Persistence\Specification;
+namespace Connections\Api\Infrastructure\Persistence\Specification;
 
-use Vonq\Api\Domain\Model\ConnectionSpecificationInterface;
-use Vonq\Api\Domain\Model\RelationshipConnection;
-use Vonq\Api\Domain\Model\UserId;
-use Vonq\Api\Infrastructure\Persistence\ConnectionTypeMapper;
+use Connections\Api\Domain\Model\ConnectionSpecificationInterface;
+use Connections\Api\Domain\Model\RelationshipConnection;
+use Connections\Api\Domain\Model\UserId;
+use Connections\Api\Infrastructure\Persistence\ConnectionTypeMapper;
 
 class AllRelationshipsForUserSqliteSpecification implements ConnectionSpecificationInterface
 {
